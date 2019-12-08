@@ -14,7 +14,9 @@ int main()
 	getline(std::cin, p3);
 
 	Triangle t = Triangle::Triangle(p1, p2, p3);
-	Vertex v1 = t.GetVertices()[0];
-	std::cout << v1 << std::endl;
+	double tArea = t.Area();
+	double tPeri = t.Perimeter();
+	std::cout << "Area: " << tArea << std::endl;
+	std::cout << "Perimeter: " << tPeri << std::endl;
 	return 0;
 }

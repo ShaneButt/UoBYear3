@@ -14,6 +14,8 @@ Vertex::Vertex(std::string point)
 	stream >> x;
 	stream >> comma;
 	stream >> y;
+
+	std::cout << "X: " << x << " Y: " << y << std::endl;
 }
 
 Vertex::~Vertex()
@@ -28,6 +30,16 @@ double Vertex::GetX()
 double Vertex::GetY()
 {
 	return y;
+}
+
+void Vertex::SetX(double pointX)
+{
+	x = pointX;
+}
+
+void Vertex::SetY(double pointY)
+{
+	y = pointY;
 }
 
 std::ostream& operator<<(std::ostream& os, Vertex& vert)

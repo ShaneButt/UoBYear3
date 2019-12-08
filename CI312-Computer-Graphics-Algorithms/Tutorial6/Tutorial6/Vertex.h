@@ -10,5 +10,7 @@ public:
 	~Vertex();
 	double GetX();
 	double GetY();
+	void SetX(double);
+	void SetY(double);
 	friend std::ostream& operator<<(std::ostream& os, Vertex& tri);
 };

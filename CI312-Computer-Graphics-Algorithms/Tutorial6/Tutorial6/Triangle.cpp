@@ -35,53 +35,34 @@ double Triangle::GetArea()
 	return area;
 }
 
-double Triangle::GetBase()
-{
-	return base;
-}
-
-double Triangle::GetHeight()
-{
-	return height;
-}
-
 double Triangle::Perimeter()
 {
 	double p = 0;
-	Triangle* t = this;
-	Vertex* verts = t->GetVertices();
+	Vertex* verts = GetVertices();
 	for (size_t i = 0; i < 3; i++)
 	{
 		if (i == 2) {
-			p += t->PointMagnitude(verts[i], verts[0]);
+			p += PointMagnitude(verts[i], verts[0]);
 		}
 		else {
-			p += t->PointMagnitude(verts[i], verts[i + 1]);
+			p += PointMagnitude(verts[i], verts[i + 1]);
 		}
 	}
-	return p;
+	perimeter = p;
+	return perimeter;
 }
 
 double Triangle::Area()
 {
-	double a = 0;
-	Triangle* t = this;
-	double base = (t->GetBase() != 0) ? t->GetBase() : t->Base(); // if base is not zero, use it; otherwise calculate base length
-	double height = (t->GetHeight() != 0) ? t->GetHeight() : t->Height(); // if height is not zero, use it; otherwise calculate height length
-	a = ((base * height) * (1 / 2));
-	return a;
-}
-
-double Triangle::Base()
-{
-	double b = 0;
-	return b;
-}
-
-double Triangle::Height()
-{
-	double h = 0;
-	return h;
+	Vertex* verts = GetVertices();
+	Vertex& A = verts[0];
+	Vertex& B = verts[1];
+	Vertex& C = verts[2];
+	double Ax = A.GetX(), Ay = A.GetY();
+	double Bx = B.GetX(), By = B.GetY();
+	double Cx = C.GetX(), Cy = C.GetY();
+	area = std::abs(((Ax * (By - Cy)) + (Bx * (Cy - Ay)) + (Cx * (Ay - By))) / 2);
+	return area;
 }
 
 double Triangle::PointMagnitude(Vertex a, Vertex b)
@@ -91,13 +72,12 @@ double Triangle::PointMagnitude(Vertex a, Vertex b)
 	double x2 = b.GetX(), y2 = b.GetY();
 	double x = (x2 - x1);
 	double y = (y2 - y1);
-	m = std::abs(std::pow(x, 2) + std::pow(y, 2));
+	m = std::sqrt(std::pow(x, 2) + std::pow(y, 2));
 	return m;
 }
 
 std::ostream& operator<<(std::ostream& os, const Triangle& tri)
 {
-	std::string s = "";
 	Triangle t = tri;
 	for (size_t i = 0; i < 3; i++)
 	{
