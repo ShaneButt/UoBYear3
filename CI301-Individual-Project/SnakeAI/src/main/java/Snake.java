@@ -95,6 +95,7 @@ public class Snake
 	{
 		for(SnakePiece s: pieces)
 		{
+			//body
 			context.setFill(Color.GREEN);
 			context.fillRect(s.x, s.y, pieceSize, pieceSize);
 		}
